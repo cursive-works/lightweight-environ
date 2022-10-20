@@ -44,6 +44,22 @@ class LightweightEnvironTestSuite(TestCase):
     def test_get_float(self):
         self.assertEqual(6.283, Env.float('MY_FLOAT'))
 
+    def test_non_float_value_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            Env.float('MY_STRING')
+
+    def test_non_int_value_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            Env.float('MY_LIST')
+
+    def test_get_int_with_float_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            Env.int('MY_FLOAT')
+
+    def test_get_float_from_int(self):
+        self.assertEqual(42.0, Env.float('MY_INTEGER'))
+
+
     def test_get_list(self):
         my_list = Env.list('MY_LIST')
         self.assertIn('DONT', my_list)
