@@ -1,9 +1,5 @@
-import os
-from setuptools import setup, find_packages
-
+from setuptools import setup
 from lightweight_environ import __version__
-
-# allow setup.py to be run from any path
 
 with open('README.md') as readme_md:
     README = readme_md.read()
@@ -23,7 +19,6 @@ setup(
     install_requires=[],
     python_requires='>=3.7',
     classifiers=[
-        'Development Status :: 3 - Alpha',
         'Topic :: Utilities',
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",

@@ -23,34 +23,44 @@ MY_LIST=DONT,PANIC
 ```python
 from lightweight_environ import Env
 
->>> Env.get('A_MISSING_VAR')            # Raises a KeyError exception if 'MY_ENV_VAR' is not set
+# Raises a KeyError exception if a variable does not exist
+>>> Env.get('A_MISSING_VAR')
 Traceback ...
->>> Env.get('A_MISSING_VAR', 'foo')     # first optional arg is a default returned if 'MY_ENV_VAR' is not set
+# first optional arg is a default returned if a variable does not exist
+>>> Env.get('A_MISSING_VAR', 'foo')
 'foo'
->>> Env.get('MY_STRING')                # get returns a string
+# get() returns a string
+>>> Env.get('MY_STRING')
 'ford_prefect'
->>> Env.get('MY_INTEGER')               # get returns a string
+# get() _always_ returns a string
+>>> Env.get('MY_INTEGER')
 '42'
->>> Env.int('MY_INTEGER')               # integer coersion
+# integer coersion
+>>> Env.int('MY_INTEGER')
 42
->>> Env.bool('MY_BOOLEAN')              # boolean coersion
+# boolean coersion
+>>> Env.bool('MY_BOOLEAN')
 True
->>> Env.bool('A_MISSING_VAR')           # Reading via bool does not raise an exception if the value is missing
-False                                   # It defaults to `False`
->>> Env.bool('A_MISSING_VAR', True)     # All methods support a default for missing keys
+# Reading via bool does not raise a KeyError exception if a variable does not exist - it returns false
+>>> Env.bool('A_MISSING_VAR')
+False
+# All methods support a default for missing keys
+>>> Env.bool('A_MISSING_VAR', True)
 True
->>> Env.float('MY_FLOAT')               # float coersion
+# float coersion
+>>> Env.float('MY_FLOAT')
 6.283
->>> Env.list('MY_LIST')                  # list coersion from a string of comma separated values
+# list coersion from a string of comma separated values
+>>> Env.list('MY_LIST')
 ['DONT', 'PANIC']
 >>> Env.list('A_MISSING_VALUE', 'Oh,freddled,gruntbuggly')
 ['Oh', 'freddled', 'gruntbuggly']
 >>> Env.list('A_MISSING_VALUE', ['Oh', 'freddled', 'gruntbuggly'])
 ['Oh', 'freddled', 'gruntbuggly']
 
-Env.has('A_MISSING_VALUE')              # Test if a variable exists
+# has() tests for variable existence
+Env.has('A_MISSING_VALUE')
 False
 Env.has('MY_INTEGER')
 True
-
 ```
